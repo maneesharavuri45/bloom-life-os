@@ -13,11 +13,9 @@ function loadData() {
     const saved = localStorage.getItem(STORAGE_KEY);
 
     if (!saved) {
-
         return {
             days: {}
         };
-
     }
 
     return JSON.parse(saved);
@@ -39,36 +37,71 @@ function saveData(data) {
 
 
 // =========================
-// GET TODAY
+// LOCAL DATE
 // =========================
 
 function getToday() {
 
-    const today = new Date();
+    const date = new Date();
 
-    return today.toISOString().split("T")[0];
+    const year = date.getFullYear();
 
+    const month = String(
+        date.getMonth() + 1
+    ).padStart(2, "0");
+
+    const day = String(
+        date.getDate()
+    ).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
 }
 
 
 // =========================
-// REMOVE DATA OLDER THAN
-// 10 DAYS
+// FORMAT DATE
+// =========================
+
+function formatDate(dateString) {
+
+    const date = new Date(
+        dateString + "T00:00:00"
+    );
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+}
+
+
+// =========================
+// CLEAN OLD DATA
 // =========================
 
 function cleanOldData(data) {
 
-    const today = new Date();
+    const today = new Date(
+        getToday() + "T00:00:00"
+    );
 
     Object.keys(data.days).forEach(date => {
 
-        const savedDate = new Date(date);
+        const savedDate = new Date(
+            date + "T00:00:00"
+        );
 
         const difference =
-            (today - savedDate) /
-            (1000 * 60 * 60 * 24);
+            Math.floor(
+                (today - savedDate) /
+                (1000 * 60 * 60 * 24)
+            );
 
-        if (difference > RETENTION_DAYS) {
+        if (difference >= RETENTION_DAYS) {
 
             delete data.days[date];
 
@@ -77,7 +110,6 @@ function cleanOldData(data) {
     });
 
     saveData(data);
-
 }
 
 
@@ -99,7 +131,11 @@ function getTodayData() {
 
             xp: 0,
 
-            notes: ""
+            notes: "",
+
+            finished: false,
+
+            finishedAt: null
 
         };
 
@@ -119,7 +155,9 @@ function getTodayData() {
 function addTask() {
 
     const input =
-        document.getElementById("taskInput");
+        document.getElementById(
+            "taskInput"
+        );
 
     const taskText =
         input.value.trim();
@@ -154,7 +192,7 @@ function addTask() {
 
 
 // =========================
-// COMPLETE / UNCOMPLETE TASK
+// COMPLETE TASK
 // =========================
 
 function toggleTask(id) {
@@ -191,7 +229,9 @@ function toggleTask(id) {
 function displayTasks() {
 
     const container =
-        document.getElementById("taskList");
+        document.getElementById(
+            "taskList"
+        );
 
     const data = getTodayData();
 
@@ -244,13 +284,11 @@ function displayTasks() {
                 class="check"
                 onclick="toggleTask(${task.id})"
             >
-
                 ${
                     task.completed
                         ? "✓"
                         : "○"
                 }
-
             </button>
 
             <span>
@@ -273,7 +311,7 @@ function displayTasks() {
 
 
 // =========================
-// UPDATE PROGRESS + XP
+// UPDATE PROGRESS
 // =========================
 
 function updateProgress() {
@@ -335,6 +373,227 @@ function updateProgress() {
 
 
 // =========================
+// FINISH MY DAY
+// =========================
+
+function finishMyDay() {
+
+    const data = getTodayData();
+
+    const today = getToday();
+
+    const day =
+        data.days[today];
+
+    const total =
+        day.tasks.length;
+
+    const completed =
+        day.tasks.filter(
+            task => task.completed
+        ).length;
+
+    if (total === 0) {
+
+        alert(
+            "🌷 Add at least one little goal before finishing your day."
+        );
+
+        return;
+
+    }
+
+
+    day.finished = true;
+
+    day.finishedAt =
+        new Date().toISOString();
+
+
+    saveData(data);
+
+    showDaySummary(
+        completed,
+        total
+    );
+
+}
+
+
+// =========================
+// DAY SUMMARY
+// =========================
+
+function showDaySummary(
+    completed,
+    total
+) {
+
+    const percentage =
+        Math.round(
+            (completed / total) * 100
+        );
+
+
+    const summary =
+        document.getElementById(
+            "daySummary"
+        );
+
+
+    summary.innerHTML = `
+
+        <div class="summary-icon">
+            🌙
+        </div>
+
+        <h2>
+            Your day is wrapped ✨
+        </h2>
+
+        <p>
+            You completed
+            <strong>
+                ${completed}
+            </strong>
+            out of
+            <strong>
+                ${total}
+            </strong>
+            goals.
+        </p>
+
+        <div class="summary-progress">
+            ${percentage}%
+        </div>
+
+        <p class="summary-message">
+
+            ${
+                percentage === 100
+                    ? "You completed everything! 🌸"
+                    : percentage >= 70
+                        ? "You made beautiful progress today. 🌷"
+                        : percentage >= 40
+                            ? "You still moved forward today. 💕"
+                            : "Tomorrow is another little beginning. 🌱"
+            }
+
+        </p>
+
+    `;
+
+
+    summary.classList.add(
+        "show"
+    );
+
+}
+
+
+// =========================
+// HISTORY
+// =========================
+
+function showHistory() {
+
+    const data = loadData();
+
+    const history =
+        document.getElementById(
+            "historyList"
+        );
+
+    history.innerHTML = "";
+
+
+    const dates =
+        Object.keys(data.days)
+            .sort()
+            .reverse();
+
+
+    if (dates.length === 0) {
+
+        history.innerHTML = `
+
+            <div class="empty-state">
+
+                🌸 Your history will appear here.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    dates.forEach(date => {
+
+        const day =
+            data.days[date];
+
+        const total =
+            day.tasks.length;
+
+        const completed =
+            day.tasks.filter(
+                task => task.completed
+            ).length;
+
+
+        const percentage =
+            total === 0
+                ? 0
+                : Math.round(
+                    (completed / total) * 100
+                );
+
+
+        const historyCard =
+            document.createElement(
+                "div"
+            );
+
+        historyCard.className =
+            "history-card";
+
+
+        historyCard.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${formatDate(date)}
+                </strong>
+
+                <p>
+                    ${completed} of ${total} completed
+                </p>
+
+            </div>
+
+            <div class="history-percent">
+
+                ${percentage}%
+
+            </div>
+
+        `;
+
+
+        history.appendChild(
+            historyCard
+        );
+
+    });
+
+}
+
+
+// =========================
 // START BLOOM
 // =========================
 
@@ -352,7 +611,7 @@ function startBloom() {
 
 
 // =========================
-// START WHEN PAGE LOADS
+// PAGE LOAD
 // =========================
 
 document.addEventListener(
