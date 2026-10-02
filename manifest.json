@@ -1,0 +1,11 @@
+{
+  "name": "Bloom — My Life OS",
+  "short_name": "Bloom",
+  "description": "A little space to organize your day, goals, creativity, wellness and money.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff7fb",
+  "theme_color": "#e9b6ce",
+  "orientation": "portrait",
+  "icons": []
+}
