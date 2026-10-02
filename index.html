@@ -17,7 +17,7 @@
 
     <meta
         name="description"
-        content="Bloom — a little space for your goals, creativity, wellness, learning and everyday life."
+        content="Bloom — your colorful little Life OS for goals, creativity, wellness, learning and money."
     >
 
     <title>Bloom — My Life OS 🌸</title>
@@ -40,26 +40,34 @@
 <main class="app">
 
 
-    <!-- WELCOME -->
+    <!-- =========================
+         WELCOME
+    ========================== -->
 
     <header class="welcome">
 
-        <p class="date">
-            Your little space 🌷
+        <p
+            class="date"
+            id="todayDate"
+        >
+            Today 🌷
         </p>
 
-        <h1>
+        <h1 id="greeting">
             Welcome to Bloom 🌸
         </h1>
 
         <p class="subtitle">
-            Make today count, one little step at a time.
+            A little space for everything
+            that makes you, you.
         </p>
 
     </header>
 
 
-    <!-- QUOTE -->
+    <!-- =========================
+         DAILY QUOTE
+    ========================== -->
 
     <section class="quote-card">
 
@@ -67,7 +75,7 @@
             ✨
         </span>
 
-        <p>
+        <p id="dailyQuote">
             "Small steps still move you forward."
         </p>
 
@@ -78,7 +86,9 @@
     </section>
 
 
-    <!-- TODAY'S TASKS -->
+    <!-- =========================
+         TODAY'S TASKS
+    ========================== -->
 
     <section class="section">
 
@@ -128,8 +138,6 @@
         </div>
 
 
-        <!-- FINISH DAY -->
-
         <button
             class="finish-day-button"
             onclick="finishMyDay()"
@@ -137,8 +145,6 @@
             🌙 Finish My Day
         </button>
 
-
-        <!-- DAY SUMMARY -->
 
         <div
             id="daySummary"
@@ -149,7 +155,9 @@
     </section>
 
 
-    <!-- LIFE CATEGORIES -->
+    <!-- =========================
+         LIFE CATEGORIES
+    ========================== -->
 
     <section class="section">
 
@@ -255,7 +263,9 @@
     </section>
 
 
-    <!-- MONEY -->
+    <!-- =========================
+         MONEY
+    ========================== -->
 
     <section class="money-card">
 
@@ -319,7 +329,9 @@
     </section>
 
 
-    <!-- HISTORY -->
+    <!-- =========================
+         HISTORY
+    ========================== -->
 
     <section class="history-section">
 
@@ -355,7 +367,9 @@
     </section>
 
 
-    <!-- LITTLE WIN -->
+    <!-- =========================
+         LITTLE WIN
+    ========================== -->
 
     <section class="win-card">
 
@@ -369,7 +383,7 @@
                 Today's little win
             </h2>
 
-            <p>
+            <p id="littleWin">
                 Show up for yourself,
                 one little step at a time.
             </p>
