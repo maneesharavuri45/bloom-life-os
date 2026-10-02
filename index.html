@@ -1,431 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="theme-color"
-        content="#e9b6ce"
-    >
-
-    <meta
-        name="description"
-        content="Bloom — your colorful little Life OS for goals, creativity, wellness, learning and money."
-    >
-
-    <title>Bloom — My Life OS 🌸</title>
-
-    <link
-        rel="manifest"
-        href="manifest.json"
-    >
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e9b6ce">
+<meta name="description" content="Bloom — your colorful personal Life OS.">
+<title>Bloom 🌸</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
 <main class="app">
 
-
-    <!-- =========================
-         WELCOME
-    ========================== -->
-
-    <header class="welcome">
-
-        <p
-            class="date"
-            id="todayDate"
-        >
-            Today 🌷
-        </p>
-
-        <h1 id="greeting">
-            Welcome to Bloom 🌸
-        </h1>
-
-        <p class="subtitle">
-            A little space for everything
-            that makes you, you.
-        </p>
-
-    </header>
+<header class="welcome">
+    <p id="todayDate" class="date"></p>
+    <h1 id="greeting">Welcome to Bloom 🌸</h1>
+    <p class="subtitle">A little space for everything that makes you, you.</p>
+</header>
 
 
-    <!-- =========================
-         DAILY QUOTE
-    ========================== -->
-
-    <section class="quote-card">
-
-        <span class="quote-icon">
-            ✨
-        </span>
-
-        <p id="dailyQuote">
-            "Small steps still move you forward."
-        </p>
-
-        <span class="quote-label">
-            YOUR LITTLE REMINDER FOR TODAY
-        </span>
-
-    </section>
+<section class="quote-card">
+    <span class="quote-icon">✨</span>
+    <p id="dailyQuote"></p>
+    <span class="quote-label">YOUR LITTLE REMINDER FOR TODAY</span>
+</section>
 
 
-    <!-- =========================
-         TODAY'S TASKS
-    ========================== -->
+<!-- DAILY TASKS -->
 
-    <section class="section">
+<section class="section">
 
-        <div class="section-title">
+    <div class="section-title">
+        <h2>Today's little goals 🌷</h2>
+        <span id="xpCount">⭐ 0 XP</span>
+    </div>
 
-            <h2>
-                Today's little goals 🌷
-            </h2>
+    <div class="task-form">
 
-            <span id="xpCount">
-                ⭐ 0 XP
-            </span>
+        <input id="taskInput"
+               type="text"
+               placeholder="What do you want to do today?">
 
+        <select id="taskCategory">
+            <option value="Work">💻 Work</option>
+            <option value="Creative">🧶 Creative</option>
+            <option value="Wellness">🌿 Wellness</option>
+            <option value="Learning">🧠 Learning</option>
+            <option value="Personal">🏠 Personal</option>
+            <option value="Explore">📍 Explore</option>
+        </select>
+
+        <button class="add-button" onclick="addTask()">+ Add</button>
+
+    </div>
+
+    <div id="progressText" class="progress-text">
+        0 / 0 completed • 0%
+    </div>
+
+    <div id="taskList" class="task-list"></div>
+
+    <button class="finish-day-button" onclick="finishMyDay()">
+        🌙 Finish My Day
+    </button>
+
+    <div id="daySummary" class="day-summary"></div>
+
+</section>
+
+
+<!-- CATEGORY ACTIVITY -->
+
+<section class="section">
+
+    <h2>Your world today ✨</h2>
+
+    <div id="categorySummary" class="category-summary"></div>
+
+</section>
+
+
+<!-- MONEY -->
+
+<section class="money-card">
+
+    <span class="money-icon">💰</span>
+
+    <h2>My money</h2>
+
+    <p>Keep track of where your money goes.</p>
+
+    <div class="money-summary">
+
+        <div>
+            <small>Income</small>
+            <strong id="incomeTotal">₹0</strong>
         </div>
 
-
-        <div class="add-task">
-
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="What do you want to do today?"
-            >
-
-            <button
-                class="add-button"
-                onclick="addTask()"
-            >
-                + Add
-            </button>
-
+        <div>
+            <small>Spent</small>
+            <strong id="expenseTotal">₹0</strong>
         </div>
 
-
-        <div
-            id="progressText"
-            class="progress-text"
-        >
-            0 / 0 completed • 0%
+        <div>
+            <small>Saved</small>
+            <strong id="savedTotal">₹0</strong>
         </div>
 
-
-        <div
-            id="taskList"
-            class="task-list"
-        >
-        </div>
+    </div>
 
 
-        <button
-            class="finish-day-button"
-            onclick="finishMyDay()"
-        >
-            🌙 Finish My Day
+    <div class="money-form">
+
+        <h3>Add money record</h3>
+
+        <select id="moneyType">
+            <option value="expense">💸 Expense</option>
+            <option value="income">💵 Income</option>
+        </select>
+
+        <input id="moneyAmount"
+               type="number"
+               min="0"
+               placeholder="Amount ₹">
+
+        <select id="moneyCategory">
+            <option>🍔 Food</option>
+            <option>🛍️ Shopping</option>
+            <option>🚕 Travel</option>
+            <option>🧶 Hobbies</option>
+            <option>🏋️ Gym</option>
+            <option>🏠 Home</option>
+            <option>📄 Bills</option>
+            <option>💻 Work</option>
+            <option>✨ Other</option>
+        </select>
+
+        <input id="moneyNote"
+               type="text"
+               placeholder="What was this for?">
+
+        <button class="money-add-button" onclick="addMoney()">
+            + Save record
         </button>
 
+    </div>
 
-        <div
-            id="daySummary"
-            class="day-summary"
-        >
-        </div>
+    <div id="moneyList" class="money-list"></div>
 
-    </section>
+</section>
 
 
-    <!-- =========================
-         LIFE CATEGORIES
-    ========================== -->
+<!-- HISTORY -->
 
-    <section class="section">
+<section class="history-section">
 
-        <h2>
-            Your world today ✨
-        </h2>
+    <div class="section-title">
+        <h2>📖 My last 10 days</h2>
+        <button class="history-button" onclick="showHistory()">
+            View
+        </button>
+    </div>
 
+    <div id="historyList" class="history-list"></div>
 
-        <div class="cards">
+</section>
 
 
-            <div class="card work">
+<section class="win-card">
+    <span>🌸</span>
+    <div>
+        <h2>Today's little win</h2>
+        <p>Show up for yourself, one little step at a time.</p>
+    </div>
+</section>
 
-                <span>💻</span>
 
-                <h3>
-                    Work
-                </h3>
-
-                <p>
-                    Your work & career
-                </p>
-
-            </div>
-
-
-            <div class="card creative">
-
-                <span>🧶</span>
-
-                <h3>
-                    Creative
-                </h3>
-
-                <p>
-                    Crochet • Painting • Design
-                </p>
-
-            </div>
-
-
-            <div class="card wellness">
-
-                <span>🌿</span>
-
-                <h3>
-                    Wellness
-                </h3>
-
-                <p>
-                    Gym • Health • Self-care
-                </p>
-
-            </div>
-
-
-            <div class="card learning">
-
-                <span>🧠</span>
-
-                <h3>
-                    Learning
-                </h3>
-
-                <p>
-                    AI • DevOps • Skills
-                </p>
-
-            </div>
-
-
-            <div class="card personal">
-
-                <span>🏠</span>
-
-                <h3>
-                    Personal
-                </h3>
-
-                <p>
-                    Home • Cleaning • Life
-                </p>
-
-            </div>
-
-
-            <div class="card explore">
-
-                <span>📍</span>
-
-                <h3>
-                    Explore
-                </h3>
-
-                <p>
-                    Places • Trips • Memories
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         MONEY
-    ========================== -->
-
-    <section class="money-card">
-
-        <div>
-
-            <span>💰</span>
-
-            <h2>
-                This month's money
-            </h2>
-
-            <p>
-                Let's see where your money is going.
-            </p>
-
-        </div>
-
-
-        <div class="money-summary">
-
-            <div>
-
-                <small>
-                    Income
-                </small>
-
-                <strong>
-                    ₹0
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <small>
-                    Spent
-                </small>
-
-                <strong>
-                    ₹0
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <small>
-                    Saved
-                </small>
-
-                <strong>
-                    ₹0
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         HISTORY
-    ========================== -->
-
-    <section class="history-section">
-
-        <div class="section-title">
-
-            <h2>
-                📖 My last 10 days
-            </h2>
-
-            <button
-                class="history-button"
-                onclick="showHistory()"
-            >
-                View
-            </button>
-
-        </div>
-
-
-        <div
-            id="historyList"
-            class="history-list"
-        >
-
-            <div class="empty-state">
-
-                🌸 Your history will appear here.
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         LITTLE WIN
-    ========================== -->
-
-    <section class="win-card">
-
-        <span>
-            🌸
-        </span>
-
-        <div>
-
-            <h2>
-                Today's little win
-            </h2>
-
-            <p id="littleWin">
-                Show up for yourself,
-                one little step at a time.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <footer>
-
-        Made with ♡ by you
-
-    </footer>
-
+<footer>Made with ♡ by you</footer>
 
 </main>
 
 
 <script src="app.js"></script>
 
-
 <script>
-
-    if ("serviceWorker" in navigator) {
-
-        window.addEventListener(
-            "load",
-            () => {
-
-                navigator.serviceWorker.register(
-                    "service-worker.js"
-                );
-
-            }
-        );
-
-    }
-
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js");
+    });
+}
 </script>
 
-
 </body>
-
 </html>
