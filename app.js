@@ -618,3 +618,139 @@ document.addEventListener(
     "DOMContentLoaded",
     startBloom
 );
+
+// =========================
+// DAILY BLOOM EXPERIENCE
+// =========================
+
+const bloomQuotes = [
+
+    "Small steps still move you forward. 🌷",
+
+    "You don't have to do everything today. Just do what matters. ✨",
+
+    "Progress is progress, even when it feels tiny. 🌱",
+
+    "Your future self will thank you for starting today. 💕",
+
+    "A little consistency can create something beautiful. 🌸",
+
+    "You are allowed to go at your own pace. 🦋",
+
+    "One task. One step. One day at a time. 🌷",
+
+    "Make today a little better than yesterday. ✨",
+
+    "You showed up. That already matters. 💗",
+
+    "Keep growing, even if nobody sees it yet. 🌱"
+
+];
+
+
+function updateDailyExperience() {
+
+    const now = new Date();
+
+    const hour = now.getHours();
+
+
+    // ---------- GREETING ----------
+
+    let greeting = "Hello";
+
+    if (hour >= 5 && hour < 12) {
+
+        greeting = "Good morning";
+
+    } else if (hour >= 12 && hour < 17) {
+
+        greeting = "Good afternoon";
+
+    } else if (hour >= 17 && hour < 22) {
+
+        greeting = "Good evening";
+
+    } else {
+
+        greeting = "Still awake";
+
+    }
+
+
+    const greetingElement =
+        document.getElementById(
+            "greeting"
+        );
+
+
+    if (greetingElement) {
+
+        greetingElement.innerHTML =
+            `${greeting}, Maneesha 🌸`;
+
+    }
+
+
+    // ---------- DATE ----------
+
+    const dateElement =
+        document.getElementById(
+            "todayDate"
+        );
+
+
+    if (dateElement) {
+
+        dateElement.innerHTML =
+            now.toLocaleDateString(
+                "en-IN",
+                {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+    }
+
+
+    // ---------- DAILY QUOTE ----------
+
+    const quoteElement =
+        document.getElementById(
+            "dailyQuote"
+        );
+
+
+    if (quoteElement) {
+
+        const dayNumber =
+            Math.floor(
+                new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate()
+                ).getTime()
+                /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const quoteIndex =
+            dayNumber %
+            bloomQuotes.length;
+
+
+        quoteElement.innerHTML =
+            `"${bloomQuotes[quoteIndex]}"`;
+
+    }
+
+}
+
+
+// Run immediately
+
+updateDailyExperience();
