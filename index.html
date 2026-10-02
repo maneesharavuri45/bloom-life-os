@@ -22,13 +22,11 @@
 
     <title>Bloom — My Life OS 🌸</title>
 
-    <!-- Bloom PWA -->
     <link
         rel="manifest"
         href="manifest.json"
     >
 
-    <!-- Bloom styling -->
     <link
         rel="stylesheet"
         href="style.css"
@@ -39,384 +37,379 @@
 
 <body>
 
-    <main class="app">
+<main class="app">
 
 
-        <!-- =========================
-             WELCOME
-        ========================== -->
+    <!-- WELCOME -->
 
-        <header class="welcome">
+    <header class="welcome">
 
-            <p class="date">
-                Friday • October 2, 2026
-            </p>
+        <p class="date">
+            Your little space 🌷
+        </p>
 
-            <h1>
-                Good evening, Maneesha 🌸
-            </h1>
+        <h1>
+            Welcome to Bloom 🌸
+        </h1>
 
-            <p class="subtitle">
-                A little space for everything
-                that makes you, you.
-            </p>
+        <p class="subtitle">
+            Make today count, one little step at a time.
+        </p>
 
-        </header>
+    </header>
 
 
-        <!-- =========================
-             DAILY QUOTE
-        ========================== -->
+    <!-- QUOTE -->
 
-        <section class="quote-card">
+    <section class="quote-card">
 
-            <span class="quote-icon">
-                ✨
-            </span>
+        <span class="quote-icon">
+            ✨
+        </span>
 
-            <p>
-                "Small steps still move you forward."
-            </p>
+        <p>
+            "Small steps still move you forward."
+        </p>
 
-            <span class="quote-label">
-                YOUR LITTLE REMINDER FOR TODAY
-            </span>
+        <span class="quote-label">
+            YOUR LITTLE REMINDER FOR TODAY
+        </span>
 
-        </section>
+    </section>
 
 
-        <!-- =========================
-             TODAY'S TASKS
-        ========================== -->
+    <!-- TODAY'S TASKS -->
 
-        <section class="section">
+    <section class="section">
 
-            <div class="section-title">
-
-                <h2>
-                    Today's little goals 🌷
-                </h2>
-
-                <span id="xpCount">
-                    ⭐ 0 XP
-                </span>
-
-            </div>
-
-
-            <!-- Add task -->
-
-            <div class="add-task">
-
-                <input
-                    type="text"
-                    id="taskInput"
-                    placeholder="What do you want to do today?"
-                >
-
-                <button
-                    class="add-button"
-                    onclick="addTask()"
-                >
-                    + Add
-                </button>
-
-            </div>
-
-
-            <!-- Progress -->
-
-            <div
-                id="progressText"
-                class="progress-text"
-            >
-                0 / 0 completed • 0%
-            </div>
-
-
-            <!-- Tasks will appear here -->
-
-            <div
-                id="taskList"
-                class="task-list"
-            >
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             LIFE CATEGORIES
-        ========================== -->
-
-        <section class="section">
+        <div class="section-title">
 
             <h2>
-                Your world today ✨
+                Today's little goals 🌷
             </h2>
 
-
-            <div class="cards">
-
-
-                <!-- WORK -->
-
-                <div class="card work">
-
-                    <span>
-                        💻
-                    </span>
-
-                    <h3>
-                        Work
-                    </h3>
-
-                    <p>
-                        Your work & career
-                    </p>
-
-                </div>
-
-
-                <!-- CREATIVE -->
-
-                <div class="card creative">
-
-                    <span>
-                        🧶
-                    </span>
-
-                    <h3>
-                        Creative
-                    </h3>
-
-                    <p>
-                        Crochet • Painting • Design
-                    </p>
-
-                </div>
-
-
-                <!-- WELLNESS -->
-
-                <div class="card wellness">
-
-                    <span>
-                        🌿
-                    </span>
-
-                    <h3>
-                        Wellness
-                    </h3>
-
-                    <p>
-                        Gym • Health • Self-care
-                    </p>
-
-                </div>
-
-
-                <!-- LEARNING -->
-
-                <div class="card learning">
-
-                    <span>
-                        🧠
-                    </span>
-
-                    <h3>
-                        Learning
-                    </h3>
-
-                    <p>
-                        AI • DevOps • Skills
-                    </p>
-
-                </div>
-
-
-                <!-- PERSONAL -->
-
-                <div class="card personal">
-
-                    <span>
-                        🏠
-                    </span>
-
-                    <h3>
-                        Personal
-                    </h3>
-
-                    <p>
-                        Home • Cleaning • Life
-                    </p>
-
-                </div>
-
-
-                <!-- EXPLORE -->
-
-                <div class="card explore">
-
-                    <span>
-                        📍
-                    </span>
-
-                    <h3>
-                        Explore
-                    </h3>
-
-                    <p>
-                        Places • Trips • Memories
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             MONEY
-        ========================== -->
-
-        <section class="money-card">
-
-            <div>
-
-                <span>
-                    💰
-                </span>
-
-                <h2>
-                    This month's money
-                </h2>
-
-                <p>
-                    Let's see where your money is going.
-                </p>
-
-            </div>
-
-
-            <div class="money-summary">
-
-
-                <div>
-
-                    <small>
-                        Income
-                    </small>
-
-                    <strong>
-                        ₹0
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <small>
-                        Spent
-                    </small>
-
-                    <strong>
-                        ₹0
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <small>
-                        Saved
-                    </small>
-
-                    <strong>
-                        ₹0
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             TODAY'S LITTLE WIN
-        ========================== -->
-
-        <section class="win-card">
-
-            <span>
-                🌸
+            <span id="xpCount">
+                ⭐ 0 XP
             </span>
 
-            <div>
+        </div>
 
-                <h2>
-                    Today's little win
-                </h2>
+
+        <div class="add-task">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="What do you want to do today?"
+            >
+
+            <button
+                class="add-button"
+                onclick="addTask()"
+            >
+                + Add
+            </button>
+
+        </div>
+
+
+        <div
+            id="progressText"
+            class="progress-text"
+        >
+            0 / 0 completed • 0%
+        </div>
+
+
+        <div
+            id="taskList"
+            class="task-list"
+        >
+        </div>
+
+
+        <!-- FINISH DAY -->
+
+        <button
+            class="finish-day-button"
+            onclick="finishMyDay()"
+        >
+            🌙 Finish My Day
+        </button>
+
+
+        <!-- DAY SUMMARY -->
+
+        <div
+            id="daySummary"
+            class="day-summary"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- LIFE CATEGORIES -->
+
+    <section class="section">
+
+        <h2>
+            Your world today ✨
+        </h2>
+
+
+        <div class="cards">
+
+
+            <div class="card work">
+
+                <span>💻</span>
+
+                <h3>
+                    Work
+                </h3>
 
                 <p>
-                    Show up for yourself,
-                    one little step at a time.
+                    Your work & career
                 </p>
 
             </div>
 
-        </section>
+
+            <div class="card creative">
+
+                <span>🧶</span>
+
+                <h3>
+                    Creative
+                </h3>
+
+                <p>
+                    Crochet • Painting • Design
+                </p>
+
+            </div>
 
 
-        <!-- =========================
-             FOOTER
-        ========================== -->
+            <div class="card wellness">
 
-        <footer>
+                <span>🌿</span>
 
-            Made with ♡ by you
+                <h3>
+                    Wellness
+                </h3>
 
-        </footer>
+                <p>
+                    Gym • Health • Self-care
+                </p>
 
-
-    </main>
-
-
-    <!-- =========================
-         BLOOM JAVASCRIPT
-    ========================== -->
-
-    <script src="app.js"></script>
+            </div>
 
 
-    <!-- =========================
-         SERVICE WORKER
-    ========================== -->
+            <div class="card learning">
 
-    <script>
+                <span>🧠</span>
 
-        if ("serviceWorker" in navigator) {
+                <h3>
+                    Learning
+                </h3>
 
-            window.addEventListener(
-                "load",
-                () => {
+                <p>
+                    AI • DevOps • Skills
+                </p>
 
-                    navigator.serviceWorker.register(
-                        "service-worker.js"
-                    );
+            </div>
 
-                }
-            );
 
-        }
+            <div class="card personal">
 
-    </script>
+                <span>🏠</span>
+
+                <h3>
+                    Personal
+                </h3>
+
+                <p>
+                    Home • Cleaning • Life
+                </p>
+
+            </div>
+
+
+            <div class="card explore">
+
+                <span>📍</span>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <p>
+                    Places • Trips • Memories
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MONEY -->
+
+    <section class="money-card">
+
+        <div>
+
+            <span>💰</span>
+
+            <h2>
+                This month's money
+            </h2>
+
+            <p>
+                Let's see where your money is going.
+            </p>
+
+        </div>
+
+
+        <div class="money-summary">
+
+            <div>
+
+                <small>
+                    Income
+                </small>
+
+                <strong>
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    Spent
+                </small>
+
+                <strong>
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    Saved
+                </small>
+
+                <strong>
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HISTORY -->
+
+    <section class="history-section">
+
+        <div class="section-title">
+
+            <h2>
+                📖 My last 10 days
+            </h2>
+
+            <button
+                class="history-button"
+                onclick="showHistory()"
+            >
+                View
+            </button>
+
+        </div>
+
+
+        <div
+            id="historyList"
+            class="history-list"
+        >
+
+            <div class="empty-state">
+
+                🌸 Your history will appear here.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LITTLE WIN -->
+
+    <section class="win-card">
+
+        <span>
+            🌸
+        </span>
+
+        <div>
+
+            <h2>
+                Today's little win
+            </h2>
+
+            <p>
+                Show up for yourself,
+                one little step at a time.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        Made with ♡ by you
+
+    </footer>
+
+
+</main>
+
+
+<script src="app.js"></script>
+
+
+<script>
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                navigator.serviceWorker.register(
+                    "service-worker.js"
+                );
+
+            }
+        );
+
+    }
+
+</script>
 
 
 </body>
